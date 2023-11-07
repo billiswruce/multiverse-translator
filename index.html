@@ -7,12 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
+    <header>
     <img src="img/bg4.jpg" alt="background" id="background">
     <div id="container">
     <h1>multiverse translator</h1>
+    </header>
+
+    <main>
     
+        <!-- translator-app som håller allt innehåll förutom knapp -->
     <div class="translator-app">
+
+         <!-- Välj språk och dropdown -->
         <div id="chooselanguage">
         <label for="selectLanguage">Choose Language:</label>
             <select id="selectLanguage">
@@ -26,7 +32,8 @@
             </div>
         </select>
 
-    <div id="wrapper"> 
+        <!-- Rubriker och Textfält -->
+        <div id="wrapper"> 
         <div id="input">
             <label for="englishInput">English:</label>
             <textarea id="englishInput" placeholder ="Write your sentence here" user-scalable=no></textarea>
@@ -36,14 +43,13 @@
         <label for="translationOutput">Translation:</label>
         <textarea id="translationOutput" readonly></textarea>
         </div>
-    </div>
+        </div>
 
-    
     </div>
-    <button>Let's go!</button>
-</div>
-</div>
-</main>
-<script src="script.js"></script>
+        <!-- översättningsknapp -->
+        <button>Let's go!</button>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>

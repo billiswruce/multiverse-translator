@@ -1,69 +1,58 @@
 document.addEventListener("DOMContentLoaded", function () {
-
-    //-------hämtar från HTML-------
+    //----hämtar element från HTML----
     let selectLanguage = document.getElementById("selectLanguage");
     let englishInput = document.getElementById("englishInput");
     let translationOutput = document.getElementById("translationOutput");
     let button = document.querySelector("button");
 
-    //-------lägger till händelselyssnare när sidan laddats-------
-    function initializePage() {
-        selectLanguage.addEventListener("change", clearTranslation);
-        button.addEventListener("click", translateText);
-    }
-
-    //-------funktion som rensar översättningen när engelskainput raderas-------
+    //-----funktion som rensar översättningen när ingenting är skrivet i engelskainput-----
     function clearTranslation() {
-        translationOutput.value = "";
-    }
-    englishInput.addEventListener("input", function () {
-        if (englishInput.value === "") {
-            clearTranslation();
+        let inputText = englishInput.value;
+        if (inputText === "") {
+            translationOutput.value = "";
         }
-    });
+    }
+    englishInput.addEventListener("input", clearTranslation);
 
-    //-------funktion som översätter den engelska texten-------
+
+    //-----funktion som hämtar API baserat på det valda språket-----
+    function getTranslationApiUrl(selectedLanguage) {
+        if (selectedLanguage === "yoda") {
+            return "https://api.funtranslations.com/translate/yoda.json";
+        } else if (selectedLanguage === "pirate") {
+            return "https://api.funtranslations.com/translate/pirate.json";
+        } else if (selectedLanguage === "shakespeare") {
+            return "https://api.funtranslations.com/translate/shakespeare.json";
+        } else if (selectedLanguage === "minion") {
+            return "https://api.funtranslations.com/translate/minion.json";
+        } else if (selectedLanguage === "morse") {
+            return "https://api.funtranslations.com/translate/morse.json";
+        } else if (selectedLanguage === "sindarin") {
+            return "https://api.funtranslations.com/translate/sindarin.json";
+        } else {
+            return "";
+        }
+    }
+
+    //-----funktion som översätter texten och uppdaterar översättningen på sidan-----
     async function translateText() {
         let selectedLanguage = selectLanguage.value;
         let textToTranslate = englishInput.value;
-        let apiUrl = getTranslationAPI(selectedLanguage);
+        let apiUrl = getTranslationApiUrl(selectedLanguage);
 
         try {
             let translatedText = await fetchTranslation(apiUrl, textToTranslate);
-            updateTranslation(translatedText);
+            updateTranslation(translatedText, selectedLanguage);
         } catch (error) {
-            handleTranslationError(selectedLanguage, error);
+            handleTranslationError(error, selectedLanguage);
         }
     }
 
-    //-------hämtar API baserat på valt språk-------
-    function getTranslationAPI(language) {
-        switch (language) {
-            case "yoda":
-                return "https://api.funtranslations.com/translate/yoda.json";
-            case "pirate":
-                return "https://api.funtranslations.com/translate/pirate.json";
-            case "shakespeare":
-                return "https://api.funtranslations.com/translate/shakespeare.json";
-            case "minion":
-                return "https://api.funtranslations.com/translate/minion.json";
-            case "morse":
-                return "https://api.funtranslations.com/translate/morse.json";
-            case "sindarin":
-                return "https://api.funtranslations.com/translate/sindarin.json";
-            default:
-                return "";
-        }
-    }
-
-    //-------hämtar översatt text från API med POST-------
+    //-----funktion som returnerar översatt text från det frågade APIet-----
     async function fetchTranslation(apiUrl, textToTranslate) {
         let response = await fetch(apiUrl, {
-            method: "POST", 
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: new URLSearchParams({ text: textToTranslate }), // Lägger till text som parameter
+            method: "POST",
+            body: new URLSearchParams({ text: textToTranslate }),
         });
 
         if (!response.ok) {
@@ -74,40 +63,33 @@ document.addEventListener("DOMContentLoaded", function () {
         return data.contents.translated;
     }
 
-    //-------uppdaterar översättningen så att den syns på sidan-------
-    function updateTranslation(translatedText) {
+    //-----funktion som uppdaterar översättningen till sidan-----
+    function updateTranslation(translatedText, selectedLanguage) {
         translationOutput.value = translatedText;
     }
 
-    //-------error som kastas hanteras och visar meddelande utifrån valt språk-------
-    function handleTranslationError(language, error) {
+    //-----funktion som hanterar error och visar lämpligt felmeddelande-----
+    function handleTranslationError(error, selectedLanguage) {
         let errorMessage = "";
-        switch (language) {
-            case "yoda":
-                errorMessage = "Not good enough, error your force is. Practice harder you need.";
-                break;
-            case "pirate":
-                errorMessage = "Ye got an error, ye be not good enough t' be a Corsair, bye!";
-                break;
-            case "shakespeare":
-                errorMessage = "I am mine most humble apology but thee did get an error.";
-                break;
-            case "minion":
-                errorMessage = "Error! via, too deep a boma leh ji!";
-                break;
-            case "morse":
-                errorMessage = "Error . .-. .-. --- .-.";
-                break;
-            case "sindarin":
-                errorMessage = "Error, verui sorrui but ha seems cin got an mist.";
-                break;
-            default:
-                errorMessage = "An error occurred.";
-                break;
+        if (selectedLanguage === "yoda") {
+            errorMessage = "Not good enough, error your force is. Practice harder you need.";
+        } else if (selectedLanguage === "pirate") {
+            errorMessage = "Ye got an error, ye be not good enough t' be a Corsair, bye!";
+        } else if (selectedLanguage === "shakespeare") {
+            errorMessage = "I am mine most humble apology but thee did get an error.";
+        } else if (selectedLanguage === "minion") {
+            errorMessage = "Error! via, too deep a boma leh ji!";
+        } else if (selectedLanguage === "morse") {
+            errorMessage = "Error . .-. .-. --- .-.";
+        } else if (selectedLanguage === "sindarin") {
+            errorMessage = "Error, verui sorrui but ha seems cin got an mist.";
+        } else {
+            errorMessage = "An error occurred.";
         }
-        console.error(errorMessage, error);
+        console.error(selectedLanguage, error);
         translationOutput.value = errorMessage;
     }
 
-    initializePage();
+    //-----event på knappen som översätter texten-----
+    button.addEventListener("click", translateText);
 });

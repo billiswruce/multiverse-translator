@@ -6,13 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let translationOutput = document.getElementById("translationOutput");
     let button = document.querySelector("button");
 
-
     //-------lägger till händelselyssnare när sidan laddats-------
     function initializePage() {
-        selectLanguage.addEventListener("change", clearTranslation); 
+        selectLanguage.addEventListener("change", clearTranslation);
         button.addEventListener("click", translateText);
     }
-
 
     //-------funktion som rensar översättningen när engelskainput raderas-------
     function clearTranslation() {
@@ -24,8 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-
-    //-------funktion som översätter den engelska texten------- 
+    //-------funktion som översätter den engelska texten-------
     async function translateText() {
         let selectedLanguage = selectLanguage.value;
         let textToTranslate = englishInput.value;
@@ -38,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
             handleTranslationError(selectedLanguage, error);
         }
     }
-
 
     //-------hämtar API baserat på valt språk-------
     function getTranslationAPI(language) {
@@ -60,25 +56,28 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    //-------hämtar översatt text från API med POST-------
+    async function fetchTranslation(apiUrl, textToTranslate) {
+        let response = await fetch(apiUrl, {
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({ text: textToTranslate }), // Lägger till text som parameter
+        });
 
-    //-------hämtar översatt text från API-------
-    async function fetchTranslation(apiUrl) {
-        let response = await fetch(apiUrl);
-    
-        if (!response.ok) { //kastar error om förfrågan ej går igenom
+        if (!response.ok) {
             throw new Error(`HTTP error code: ${response.status}, HTTP error message: ${response.statusText}`);
         }
-    
+
         let data = await response.json();
         return data.contents.translated;
     }
-
 
     //-------uppdaterar översättningen så att den syns på sidan-------
     function updateTranslation(translatedText) {
         translationOutput.value = translatedText;
     }
-
 
     //-------error som kastas hanteras och visar meddelande utifrån valt språk-------
     function handleTranslationError(language, error) {
@@ -112,7 +111,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
     initializePage();
 });
-
-  
-
-

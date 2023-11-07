@@ -103,7 +103,6 @@ button:hover {
 
 @media screen and (max-width: 700px) {
     .translator-app {
-        /* margin: 20px 20px;  */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -121,7 +120,7 @@ button:hover {
     } 
 
     #wrapper {
-        width: 90%;
+        width: 100%;
         flex-direction: column; 
         align-items: center; 
         justify-content: center;
@@ -138,7 +137,7 @@ button:hover {
     output, 
     .translator-app,
     .translator-app select  {
-        width: 80%; 
+        width: 97%; 
     }
 
     #englishInput, 
@@ -151,8 +150,6 @@ button:hover {
         flex-direction: column;
         align-items: center;
         text-align: center; /* Centrera texten i mitten om så önskas */
-        margin-left: 0;
-        margin-top: 0;
     }
 
 }

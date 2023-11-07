@@ -103,7 +103,7 @@ button:hover {
 
 @media screen and (max-width: 700px) {
     .translator-app {
-        margin: 20px 20px; 
+        /* margin: 20px 20px;  */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -121,7 +121,7 @@ button:hover {
     } 
 
     #wrapper {
-        width: 100%;
+        width: 90%;
         flex-direction: column; 
         align-items: center; 
         justify-content: center;
@@ -138,7 +138,7 @@ button:hover {
     output, 
     .translator-app,
     .translator-app select  {
-        width: 60%; 
+        width: 80%; 
     }
 
     #englishInput, 

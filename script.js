@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 errorMessage = "Error . .-. .-. --- .-.";
                 break;
             case "sindarin":
-                errorMessage = "Error! verui sorrui but ha seems cin got an mist.";
+                errorMessage = "Error, verui sorrui but ha seems cin got an mist.";
                 break;
             default:
                 errorMessage = "An error occurred.";

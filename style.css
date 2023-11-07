@@ -1,0 +1,162 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box; 
+}
+
+#background {
+    background-size: cover; 
+    background-attachment: fixed;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+}
+
+h1 {
+    color: #ffffffa8;
+    padding: 20px;
+    font-size: 30px;
+}
+
+
+#selectLanguage  {
+    margin-bottom: 20px;
+}
+
+.translator-app {
+    width: 100%;
+    max-width: 760px; 
+    background: #ffffff;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 10px;
+} 
+
+.translator-app label {
+    margin-bottom: 5px; 
+}
+
+#chooselanguage {
+    display: flex;
+    flex-direction: column;
+    margin-left: 31px;
+    margin-top: 6px;
+}
+
+.translator-app select {
+    width: 310px;
+    height: 30px;
+    padding: 5px;
+}
+
+#wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 20px;
+}
+
+#englishInput, #translationOutput {
+    width: 310px; 
+    min-height: 200px; 
+    resize: none;
+    white-space: normal; 
+    box-sizing: border-box;
+    border-radius: 3px;
+    margin-top: 5px;
+    padding: 9px 9px;
+}
+
+#englishInput::placeholder {
+    color: #888;
+}
+
+
+button {
+    background: #212121;
+    color: #fff;
+    width: 310px;
+    border: 1px solid #222;
+    margin: 20px 0 20px 31px; 
+    border: none; 
+    padding: 10px 25px; 
+    cursor: pointer; 
+    border-radius: 8px; 
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #ffc116;
+  
+}
+
+/*MOBIL*/
+
+@media screen and (max-width: 700px) {
+    .translator-app {
+        margin: 20px 20px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center; /* Centrera texten i mitten om så önskas */
+    }
+    
+    #input, #output {
+        flex: 1; 
+    } 
+
+    #chooselanguage {
+        margin-left: 0; 
+        margin-top: 0;  
+        text-align: center; 
+    } 
+
+    #wrapper {
+        width: 100%;
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+        gap: 10px;        
+    }
+
+    button {
+        margin-top: 30px;
+        margin-left: 0;
+    }
+
+    button,
+    input,
+    output, 
+    .translator-app,
+    .translator-app select  {
+        width: 60%; 
+    }
+
+    #englishInput, 
+    #translationOutput {
+        margin-top: 8px;
+    }
+
+    #chooselanguage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center; /* Centrera texten i mitten om så önskas */
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+}
+
+
+
+

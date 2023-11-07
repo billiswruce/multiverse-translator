@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiverse Translator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+    <img src="img/bg4.jpg" alt="background" id="background">
+    <div id="container">
+    <h1>multiverse translator</h1>
+    
+    <div class="translator-app">
+        <div id="chooselanguage">
+        <label for="selectLanguage">Choose Language:</label>
+            <select id="selectLanguage">
+                <option value="">-</option>
+                <option value="yoda">Yoda Wisdom</option>
+                <option value="pirate">Pirate Tounge</option>
+                <option value="shakespeare">Shakespeare Mumble</option>
+                <option value="minion">Minion Lingu</option>
+                <option value="morse">Morse Code</option>
+                <option value="sindarin">Elf Song (Sindarin)</option>
+            </div>
+        </select>
+
+    <div id="wrapper"> 
+        <div id="input">
+            <label for="englishInput">English:</label>
+            <textarea id="englishInput" placeholder ="Write your sentence here"></textarea>
+        </div>
+
+        <div id="output">
+        <label for="translationOutput">Translation:</label>
+        <textarea id="translationOutput" readonly></textarea>
+        </div>
+    </div>
+
+    
+    </div>
+    <button>Let's go!</button>
+</div>
+</div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

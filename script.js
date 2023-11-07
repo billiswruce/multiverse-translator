@@ -1,27 +1,31 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+    //-------hämtar från HTML-------
     let selectLanguage = document.getElementById("selectLanguage");
     let englishInput = document.getElementById("englishInput");
     let translationOutput = document.getElementById("translationOutput");
     let button = document.querySelector("button");
 
-    // Lägg till händelselyssnare när sidan laddats 
+
+    //--------lägger till händelselyssnare när sidan laddats------
     function initializePage() {
-        selectLanguage.addEventListener("change", clearTranslation);
+        selectLanguage.addEventListener("change", clearTranslation); 
         button.addEventListener("click", translateText);
     }
 
-    // Rensa översättningen
+
+    //-------funktion som rensar översättningen när engelskainput raderas-------
     function clearTranslation() {
         translationOutput.value = "";
     }
-
     englishInput.addEventListener("input", function () {
         if (englishInput.value === "") {
             clearTranslation();
         }
     });
 
-    // Översätt texten
+
+    //-------funktion som översätter den engelska texten-------- 
     async function translateText() {
         let selectedLanguage = selectLanguage.value;
         let textToTranslate = englishInput.value;
@@ -35,7 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Hämta översättningstjänstens URL baserat på valt språk
+
+    //-------hämtar API baserat på valt språk--------
     function getTranslationAPI(language) {
         switch (language) {
             case "yoda":
@@ -55,27 +60,27 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Hämta översatt text från API med hjälp av POST
-    async function fetchTranslation(apiUrl, text) {
-        let response = await fetch(apiUrl, {
-            method: "POST",
-            body: new URLSearchParams({ text: text }),
-        });
 
-        if (!response.ok) {
+    //-------hämtar översatt text från API med GET-------
+    async function fetchTranslation(apiUrl) {
+        let response = await fetch(apiUrl);
+    
+        if (!response.ok) { //kastar error om förfrågan ej går igenom
             throw new Error(`HTTP error code: ${response.status}, HTTP error message: ${response.statusText}`);
         }
-
+    
         let data = await response.json();
         return data.contents.translated;
     }
 
-    // Uppdatera översättningen på sidan
+
+    //-------uppdaterar översättningen så att den syns på sidan-------
     function updateTranslation(translatedText) {
         translationOutput.value = translatedText;
     }
 
-    // Hantera error och visa anpassade errormeddelanden
+
+    //-------hanterar error och visar meddelanden-------
     function handleTranslationError(language, error) {
         let errorMessage = "";
         switch (language) {
@@ -105,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
         translationOutput.value = errorMessage;
     }
 
-    // Initialisera sidan
     initializePage();
 });
 

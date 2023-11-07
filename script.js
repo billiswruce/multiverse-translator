@@ -97,10 +97,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 errorMessage = "Error! via, too deep a boma leh ji!";
                 break;
             case "morse":
-                errorMessage = ". .-. .-. --- .-.";
+                errorMessage = "Error . .-. .-. --- .-.";
                 break;
             case "sindarin":
-                errorMessage = "Verui sorrui but ha seems cin got an mist";
+                errorMessage = "Error, verui sorrui but ha seems cin got an mist.";
                 break;
             default:
                 errorMessage = "An error occurred.";

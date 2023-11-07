@@ -131,6 +131,7 @@ button:hover {
 #englishInput, 
 #translationOutput {
     margin-top: 8px;
+    font-size: 17px;
 }
 
 button {

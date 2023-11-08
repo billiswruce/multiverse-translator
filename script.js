@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (selectedLanguage === "sindarin") {
             errorMessage = "Error, verui sorrui but ha seems cin got an mist.";
         } else {
-            errorMessage = "An error occurred.";
+            errorMessage = "Select a language.";
         }
         console.error(selectedLanguage, error);
         translationOutput.value = errorMessage;
